@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>FileFlow</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="window">
+
+  <div class="titlebar">
+    <span class="dot"></span>
+    <span class="name">FileFlow</span>
+    <span class="spacer"></span>
+    <span class="btn" onclick="window.pywebview.api.minimize()">─</span>
+    <span class="btn close-btn" onclick="window.pywebview.api.close()">✕</span>
+  </div>
+
+  <div class="header">
+    <div class="left">
+      <div class="title">
+        <span class="logo">📂</span>
+        FileFlow
+      </div>
+      <div class="sub">One-Click File Organization</div>
+    </div>
+    <button class="settings-btn" id="settingsBtn" title="Settings" onclick="toggleSettings()">⚙️</button>
+  </div>
+
+  <div class="sep"></div>
+
+  <div class="content" id="mainContent">
+    <div class="stats-row">
+      <div class="stat-card"><div class="label">Folders</div><div class="value" id="statFolders">0</div></div>
+      <div class="stat-card"><div class="label">Rules</div><div class="value" id="statRules">0</div></div>
+      <div class="stat-card"><div class="label">Actions</div><div class="value" id="statActions">0</div></div>
+    </div>
+
+    <div class="clean-panel">
+      <div class="top"><span class="label">Selected Watch Folder</span></div>
+      <div class="selected-path none" id="selectedPathDisplay">— No folder selected —</div>
+      <div class="meta" id="selectedMeta"></div>
+      <button class="btn-clean" id="cleanNowBtn" disabled onclick="clickCleanNow()">
+        <span>🧹</span> <span>Clean Now</span>
+      </button>
+    </div>
+
+    <div class="structure-section">
+      <div class="structure-head">
+        <select id="watchFolderSelector" onchange="onFolderSelect(this.value)">
+          <option value="" selected disabled>No folder selected</option>
+        </select>
+      </div>
+      
+      <div class="table-header">
+        <div>Files</div>
+        <div>Current Folder</div>
+        <div>Sub Folders</div>
+      </div>
+      <div class="file-list" id="subfolderList">
+        <div class="no-subfolders">
+          <div class="big">📁</div>
+          <p>Select a watch folder from the dropdown above.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="statusbar" style="display: flex; justify-content: space-between; align-items: center;">
+    <div id="statusText">Ready. Select a watch folder, then click Clean Now.</div>
+    <div style="color: var(--fg-dim); font-size: 10px; opacity: 0.7; font-weight: 600;">Created by: JustGDX</div>
+  </div>
+  
+  <!-- SETTINGS OVERLAY -->
+  <div class="settings-overlay" id="settingsOverlay">
+    <div class="settings-panel">
+      <div class="sp-head">
+        <h2>⚙️ Settings</h2>
+        <button class="close-btn" onclick="toggleSettings()">✕</button>
+      </div>
+
+      <div class="sp-tabs">
+        <button class="sp-tab active" onclick="switchTab('folders', this)">Watch Folders</button>
+        <button class="sp-tab" onclick="switchTab('rules', this)">Rules</button>
+        <button class="sp-tab" onclick="switchTab('activity', this)">Activity</button>
+        <button class="sp-tab" onclick="switchTab('preferences', this)">Preferences</button>
+      </div>
+
+      <div class="sp-content">
+        
+        <!-- WATCH FOLDERS -->
+        <div class="sp-pane active" id="sp-pane-folders">
+          <h3>Watch Folders</h3>
+          <div class="hint">Add or remove directories to monitor.</div>
+    
+          <div style="display: flex; gap: 6px; margin-bottom: 14px; width: 100%; align-items: center;">
+            <input type="text" id="folderPathInput" placeholder="C:\Path\To\Folder" style="flex: 1; height: 28px; padding: 0 8px; margin: 0; background: var(--panel2); color: var(--fg); border: 1px solid var(--panel2); border-radius: 4px; outline: none; box-shadow: none; font-family: inherit; font-size: 11px;">
+            <button class="btn" onclick="browseAddFolder()" style="height: 28px; padding: 0 10px; margin: 0; font-weight: 600; font-size: 11px; border-radius: 4px; border: none; background: var(--panel2); color: var(--fg); cursor: pointer; transition: background 0.2s;">Browse</button>
+            <button class="btn accent" onclick="addFolderManual()" style="height: 28px; padding: 0 10px; margin: 0; font-weight: 600; font-size: 11px; border-radius: 4px; border: none; background: var(--accent); color: #fff; cursor: pointer; transition: background 0.2s;">+ Add</button>
+          </div>
+
+          <table style="table-layout: fixed; width: 100%;">
+            <thead>
+              <tr>
+                <th style="width: 40px;">ID</th>
+                <th>Path</th>
+                <th style="width: 50px; text-align: center;">Files</th>
+                <th style="width: 60px; text-align: center;">Folders</th>
+                <th style="width: 40px;"></th>
+              </tr>
+            </thead>
+            <tbody id="foldersBody"></tbody>
+          </table>
+        </div>
+
+        <!-- RULES -->
+        <div class="sp-pane" id="sp-pane-rules">
+          <h3>Rules</h3>
+          <div class="comma-reminder">
+            <span class="icon" style="display: flex; align-items: center; justify-content: center; margin-top: 1px;">⚠️</span>
+            <div style="line-height: 1.5;">
+              <b>Reminder:</b> Use a comma <code>,</code> for multi-type values. 
+              Example: <code>.pdf, .docx, .csv</code> will match <b>ANY</b> of them.
+            </div>
+          </div>
+
+          <div class="formbox" style="display: flex; flex-direction: column; gap: 12px;">
+            
+            <!-- NAME -->
+            <div class="row" style="display: flex; align-items: center; margin: 0; gap: 12px;">
+              <label style="width: 70px; color: var(--fg-dim); font-size: 11px;">Name:</label>
+              <input type="text" id="ruleName" placeholder="Documents" style="flex:1; height: 32px; margin: 0;">
+            </div>
+
+            <!-- TYPE & OPERATOR -->
+            <div class="row" style="display: flex; align-items: center; margin: 0; gap: 12px;">
+              <div style="display: flex; align-items: center; gap: 3px; min-width: 70px;">
+                <label style="color: var(--fg-dim); font-size: 11px;">Type:</label>
+                <span class="info-icon">i
+                  <span class="tooltip">
+                    <div class="tt-title">📄 Rule Type</div>
+                    <div class="tt-desc">Attribute to evaluate.</div>
+                    <div class="tt-section">
+                      <div class="tt-label">EXTENSION / FILENAME</div>
+                      <div class="tt-example">Value: <span class="tt-value">.pdf</span> or <span class="tt-value">invoice</span></div>
+                    </div>
+                    <div class="tt-section">
+                      <div class="tt-label">SIZE</div>
+                      <div class="tt-example">Value: <span class="tt-value">10MB</span></div>
+                    </div>
+                    <div class="tt-section">
+                      <div class="tt-label">DATE</div>
+                      <div class="tt-example">Value: <span class="tt-value">7</span> (days)</div>
+                    </div>
+                  </span>
+                </span>
+              </div>
+              <select id="ruleType" onchange="updateOps()" style="flex: 1; height: 32px; margin: 0;">
+                <option value="extension">extension</option>
+                <option value="filename">filename</option>
+                <option value="size">size</option>
+                <option value="date">date</option>
+              </select>
+              
+              <div style="display: flex; align-items: center; gap: 3px; min-width: 75px; margin-left: 5px;">
+                <label style="color: var(--fg-dim); font-size: 11px;">Operator:</label>
+                <span class="info-icon">i
+                  <span class="tooltip">
+                    <div class="tt-title">⚙️ Operator</div>
+                    <div class="tt-desc">How to compare.</div>
+                    <div class="tt-section">
+                      <div class="tt-example"><b>equals</b> → exact match</div>
+                      <div class="tt-example"><b>contains</b> → partial match</div>
+                      <div class="tt-example"><b>gt / lt</b> → size comparison</div>
+                      <div class="tt-example"><b>older/newer</b> → days</div>
+                    </div>
+                  </span>
+                </span>
+              </div>
+              <select id="ruleOperator" style="flex: 1; height: 32px; margin: 0;"></select>
+            </div>
+
+            <!-- VALUE -->
+            <div class="row" style="display: flex; align-items: flex-start; margin: 0; gap: 12px;">
+              <div style="display: flex; align-items: center; gap: 3px; min-width: 70px; margin-top: 8px;">
+                <label style="color: var(--fg-dim); font-size: 11px;">Value:</label>
+                <span class="info-icon">i
+                  <span class="tooltip">
+                    <div class="tt-title">💎 Value</div>
+                    <div class="tt-desc">Target to match.</div>
+                    <div class="tt-section">
+                      <div class="tt-label">MULTIPLE ALLOWED</div>
+                      <div class="tt-example multiple"><span class="tt-value">.pdf, .docx, .csv</span></div>
+                    </div>
+                  </span>
+                </span>
+              </div>
+              <div style="flex: 1; display: flex; flex-direction: column;">
+                <input type="text" id="ruleValue" placeholder=".pdf, .docx, .csv" style="width: 100%; height: 32px; margin: 0;">
+                <div style="font-size: 10px; color: var(--warn); margin-top: 4px; display: flex; align-items: center; gap: 4px;">
+                  <span>⚠️</span> Separate multiple values with a <b>comma (,)</b>
+                </div>
+              </div>
+            </div>
+
+            <!-- ACTION -->
+            <div class="row" style="display: flex; align-items: center; margin: 0; gap: 12px;">
+              <div style="display: flex; align-items: center; gap: 3px; min-width: 70px;">
+                <label style="color: var(--fg-dim); font-size: 11px;">Action:</label>
+                <span class="info-icon">i
+                  <span class="tooltip">
+                    <div class="tt-title">⚡ Action</div>
+                    <div class="tt-desc">What to do when matched.</div>
+                    <div class="tt-section">
+                      <div class="tt-example"><b>move</b> → transfer file</div>
+                      <div class="tt-example"><b>copy</b> → duplicate file</div>
+                      <div class="tt-example"><b>preview</b> → log only</div>
+                    </div>
+                  </span>
+                </span>
+              </div>
+              <select id="ruleAction" style="flex: 1; height: 32px; margin: 0;">
+                <option value="preview">preview</option>
+                <option value="move">move</option>
+                <option value="copy">copy</option>
+              </select>
+            </div>
+
+            <!-- TARGET -->
+            <div class="row" style="display: flex; align-items: center; margin: 0; gap: 12px;">
+              <div style="display: flex; align-items: center; gap: 3px; min-width: 70px;">
+                <label style="color: var(--fg-dim); font-size: 11px;">Target:</label>
+                <span class="info-icon">i
+                  <span class="tooltip">
+                    <div class="tt-title">🎯 Target</div>
+                    <div class="tt-desc">Destination. Required for move/copy.</div>
+                    <div class="tt-example"><span class="tt-value">C:\Documents</span></div>
+                  </span>
+                </span>
+              </div>
+              <input type="text" id="ruleTarget" placeholder="C:\Docs" style="flex:1; height: 32px; margin: 0;">
+              <button class="btn" onclick="browseTargetFolder()" style="height: 32px; padding: 0 16px; margin: 0; white-space: nowrap;">Browse</button>
+            </div>
+
+            <!-- PRIORITY -->
+            <div class="row" style="display: flex; align-items: center; margin: 0; gap: 12px;">
+              <div style="display: flex; align-items: center; gap: 3px; min-width: 70px;">
+                <label style="color: var(--fg-dim); font-size: 11px;">Priority:</label>
+                <span class="info-icon">i
+                  <span class="tooltip">
+                    <div class="tt-title">🔢 Priority</div>
+                    <div class="tt-desc">Which rule runs first.</div>
+                    <div class="tt-section">
+                      <div class="tt-example"><span class="tt-value">High</span> → runs first</div>
+                      <div class="tt-example"><span class="tt-value">Low</span> → runs last</div>
+                    </div>
+                  </span>
+                </span>
+              </div>
+              
+              <select id="rulePriority" style="width: 90px; height: 32px; margin: 0;">
+                <option value="1">High</option>
+                <option value="50" selected>Medium</option>
+                <option value="100">Low</option>
+              </select>
+              
+              <input type="hidden" id="editRuleId" value="">
+
+              <button class="btn accent" id="addRuleBtn" onclick="saveRule()" style="flex: 1; height: 32px; margin: 0;">+ Add Rule</button>
+              <button class="btn" onclick="clearRuleForm()" style="height: 32px; padding: 0 16px; margin: 0;">Clear</button>
+            </div>
+
+          </div> <!-- Sarado para sa formbox -->
+
+          <table style="table-layout: fixed; width: 100%;">
+            <thead>
+              <tr>
+                <th style="width: 40px;">ID</th>
+                <th>Name</th>
+                <th>Value</th>
+                <th style="width: 80px;">Action</th>
+                <th style="width: 80px;">Priority</th>
+                <th style="width: 80px; text-align: center;">Options</th>
+              </tr>
+            </thead>
+            <tbody id="rulesBody"></tbody>
+          </table>
+        </div> <!-- Sarado para sa sp-pane-rules -->
+
+        <!-- ACTIVITY -->
+        <div class="sp-pane" id="sp-pane-activity">
+          <h3>Activity History</h3>
+          <div class="row" style="margin-bottom:10px;">
+            <select id="activityFilter" style="max-width:120px;" onchange="renderActivityList()">
+              <option value="all">Show All</option>
+              <option value="success">Success</option>
+              <option value="preview">Preview</option>
+              <option value="error">Error</option>
+              <option value="skipped">Skipped</option>
+            </select>
+            <button class="btn" onclick="renderActivityList()">Refresh</button>
+            <button class="btn danger" onclick="clearActivity()">Clear</button>
+          </div>
+          
+          <table>
+            <thead>
+              <tr>
+                <th style="width:70px;">Time</th>
+                <th>File</th>
+                <th style="width:80px;">Rule</th>
+                <th style="width:65px;">Action</th>
+                <th style="width:75px;">Status</th>
+              </tr>
+            </thead>
+            <tbody id="activityBody"></tbody>
+          </table>
+        </div>
+
+        <!-- PREFERENCES -->
+        <div class="sp-pane" id="sp-pane-preferences">
+          <h3>Preferences</h3>
+          <div class="preview-notice" style="background:rgba(61,220,151,.08); border-left:3px solid var(--ok); padding:10px 14px; border-radius:4px; font-size:10px; color:var(--fg-dim); line-height:1.5; margin-bottom:12px;">
+            <b>✓ Preview only</b> — files without matching rules are logged but left in place.
+          </div>
+
+          <h3 style="margin-top:16px;">Appearance</h3>
+          <div class="toggle-row">
+            <span>Dark Mode</span>
+            <label class="toggle-switch">
+              <input type="checkbox" id="themeToggle" checked onchange="toggleTheme(this)">
+              <span class="slider"></span>
+            </label>
+          </div>
+
+          <h3 style="margin-top:16px;">Collision Strategy</h3>
+          <div class="hint">When a file with the same name exists in the target folder:</div>
+          
+          <div class="custom-radio-group">
+            <label class="custom-radio">
+              <input type="radio" name="collisionStrategy" value="rename" checked onchange="savePrefs()">
+              <span class="radio-mark"></span>
+              <span class="radio-text"><b>Rename</b> — creates file (1).ext</span>
+            </label>
+            <label class="custom-radio">
+              <input type="radio" name="collisionStrategy" value="skip" onchange="savePrefs()">
+              <span class="radio-mark"></span>
+              <span class="radio-text"><b>Skip</b> — leave as is</span>
+            </label>
+            <label class="custom-radio">
+              <input type="radio" name="collisionStrategy" value="overwrite" onchange="savePrefs()">
+              <span class="radio-mark"></span>
+              <span class="radio-text"><b>Overwrite</b> — replace existing</span>
+            </label>
+          </div>
+        </div>
+
+      </div> <!-- Sarado para sa sp-content -->
+    </div> <!-- Sarado para sa settings-panel -->
+  </div> <!-- Sarado para sa settings-overlay -->
+</div> <!-- Sarado para sa window -->
+
+<!-- CUSTOM NOTIFICATION MODAL -->
+<div class="modal-overlay" id="alertModal">
+  <div class="modal-box">
+    <div class="modal-header">
+      <h2 id="modalTitle">Notification</h2>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body" id="modalDesc">
+      Message goes here.
+    </div>
+    <div class="modal-footer">
+      <button class="btn accent" onclick="closeModal()">OK</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST NOTIFICATION ELEMENT -->
+<div id="toast" class="toast">Message</div>
+
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,819 @@
+{
+  "settings": {
+    "theme": "dark",
+    "collision_strategy": "rename"
+  },
+  "folders": [
+    {
+      "id": 1,
+      "path": "C:\\Users\\gabbw\\Downloads",
+      "created_at": "2026-10-20 01:19"
+    }
+  ],
+  "rules": [
+    {
+      "id": 2,
+      "name": "Word",
+      "type": "extension",
+      "operator": "equals",
+      "values": [
+        ".docx",
+        ".doc"
+      ],
+      "action": "move",
+      "target": "C:\\Users\\gabbw\\Downloads\\Document\\Word",
+      "priority": 100
+    },
+    {
+      "id": 3,
+      "name": "PDF",
+      "type": "extension",
+      "operator": "equals",
+      "values": [
+        ".pdf"
+      ],
+      "action": "move",
+      "target": "C:\\Users\\gabbw\\Downloads\\Document\\PDF",
+      "priority": 100
+    },
+    {
+      "id": 4,
+      "name": "Text",
+      "type": "extension",
+      "operator": "equals",
+      "values": [
+        ".txt"
+      ],
+      "action": "move",
+      "target": "C:\\Users\\gabbw\\Downloads\\Document\\TXT",
+      "priority": 100
+    },
+    {
+      "id": 5,
+      "name": "Excel",
+      "type": "extension",
+      "operator": "equals",
+      "values": [
+        ".csv",
+        ".xls",
+        ".xlsx"
+      ],
+      "action": "move",
+      "target": "C:\\Users\\gabbw\\Downloads\\Document\\Excel",
+      "priority": 100
+    },
+    {
+      "id": 6,
+      "name": "PPT",
+      "type": "extension",
+      "operator": "equals",
+      "values": [
+        ".ppt",
+        ".pptx"
+      ],
+      "action": "move",
+      "target": "C:\\Users\\gabbw\\Downloads\\Document\\PowerPoint",
+      "priority": 100
+    },
+    {
+      "id": 8,
+      "name": "Video",
+      "type": "extension",
+      "operator": "equals",
+      "values": [
+        ".mp4",
+        ".mov"
+      ],
+      "action": "move",
+      "target": "C:\\Users\\gabbw\\Downloads\\Video",
+      "priority": 100
+    },
+    {
+      "id": 9,
+      "name": "UI Code",
+      "type": "extension",
+      "operator": "equals",
+      "values": [
+        ".html"
+      ],
+      "action": "move",
+      "target": "C:\\Users\\gabbw\\Downloads\\UI Code",
+      "priority": 100
+    },
+    {
+      "id": 10,
+      "name": "Audio",
+      "type": "extension",
+      "operator": "equals",
+      "values": [
+        ".mp3",
+        ".wav",
+        ".flac",
+        ".m4a"
+      ],
+      "action": "move",
+      "target": "C:\\Users\\gabbw\\Downloads\\Audio",
+      "priority": 100
+    },
+    {
+      "id": 11,
+      "name": "Archive",
+      "type": "extension",
+      "operator": "equals",
+      "values": [
+        ".zip",
+        ".rar",
+        ".7z",
+        ".tar"
+      ],
+      "action": "move",
+      "target": "C:\\Users\\gabbw\\Downloads\\Archive",
+      "priority": 100
+    },
+    {
+      "id": 13,
+      "name": "Images",
+      "type": "extension",
+      "operator": "equals",
+      "values": [
+        ".jpg",
+        ".jpeg",
+        ".png",
+        ".webp",
+        ".gif",
+        ".svg",
+        ".ico"
+      ],
+      "action": "move",
+      "target": "C:\\Users\\gabbw\\Downloads\\Image",
+      "priority": 100
+    },
+    {
+      "id": 14,
+      "name": "PacketTracer",
+      "type": "extension",
+      "operator": "equals",
+      "values": [
+        ".pkt"
+      ],
+      "action": "move",
+      "target": "C:\\Users\\gabbw\\Downloads\\PacketTracer",
+      "priority": 100
+    },
+    {
+      "id": 15,
+      "name": "Program",
+      "type": "extension",
+      "operator": "equals",
+      "values": [
+        ".exe",
+        ".msi",
+        ".msix",
+        ".apk",
+        ".dll"
+      ],
+      "action": "move",
+      "target": "C:\\Users\\gabbw\\Downloads\\Program",
+      "priority": 100
+    },
+    {
+      "id": 16,
+      "name": "ReadMe",
+      "type": "extension",
+      "operator": "equals",
+      "values": [
+        ".md"
+      ],
+      "action": "move",
+      "target": "C:\\Users\\gabbw\\Downloads\\UI Code\\md",
+      "priority": 100
+    }
+  ],
+  "activity": [
+    {
+      "time": "01:26:07",
+      "filename": "README.md",
+      "rule": "ReadMe",
+      "action": "move",
+      "status": "success"
+    },
+    {
+      "time": "01:26:07",
+      "filename": "desktop.ini",
+      "rule": "default",
+      "action": "preview",
+      "status": "preview"
+    },
+    {
+      "time": "01:25:34",
+      "filename": "README.md",
+      "rule": "default",
+      "action": "preview",
+      "status": "preview"
+    },
+    {
+      "time": "01:25:34",
+      "filename": "python-manager-26.3.msix",
+      "rule": "Program",
+      "action": "move",
+      "status": "success"
+    },
+    {
+      "time": "01:25:34",
+      "filename": "desktop.ini",
+      "rule": "default",
+      "action": "preview",
+      "status": "preview"
+    },
+    {
+      "time": "01:25:34",
+      "filename": "DeLeon_ACL_Lab5.pkt",
+      "rule": "PacketTracer",
+      "action": "move",
+      "status": "success"
+    },
+    {
+      "time": "01:25:34",
+      "filename": "Cisco-Packet-Tracer-Activity.pkt",
+      "rule": "PacketTracer",
+      "action": "move",
+      "status": "success"
+    },
+    {
+      "time": "01:19:21",
+      "filename": "Y17A_C4-hostm-D1.EXE",
+      "rule": "Program",
+      "action": "move",
+      "status": "success"
+    },
+    {
+      "time": "01:19:21",
+      "filename": "wallpaperflare.com_wallpaper.jpg",
+      "rule": "Images",
+      "action": "move",
+      "status": "success"
+    },
+    {
+      "time": "01:19:21",
+      "filename": "TP1 - MAIN UI.html",
+      "rule": "UI Code",
+      "action": "move",
+      "status": "success"
+    },
+    {
+      "time": "01:19:21",
+      "filename": "table.jpg",
+      "rule": "Images",
+      "action": "move",
+      "status": "success"
+    },
+    {
+      "time": "01:19:21",
+      "filename": "System Block Diagram.png",
+      "rule": "Images",
+      "action": "move",
+      "status": "success"
+    },
+    {
+      "time": "01:19:21",
+      "filename": "Sizzling-Habbi.stl",
+      "rule": "default",
+      "action": "preview",
+      "status": "preview"
+    },
+    {
+      "time": "01:19:21",
+      "filename": "Sizzling-Habbi.dwg",
+      "rule": "default",
+      "action": "preview",
+      "status": "preview"
+    },
+    {
+      "time": "01:19:21",
+      "filename": "Sizzling-Habbi-page-1.png",
+      "rule": "Images",
+      "action": "move",
+      "status": "success"
+    },
+    {
+      "time": "01:19:21",
+      "filename": "Screenshot 2026-10-13 195307.png",
+      "rule": "Images",
+      "action": "move",
+      "status": "success"
+    },
+    {
+      "time": "01:19:21",
+      "filename": "schedule.jpg",
+      "rule": "Images",
+      "action": "move",
+      "status": "success"
+    },
+    {
+      "time": "01:19:21",
+      "filename": "Reviewer.pdf",
+      "rule": "PDF",
+      "action": "move",
+      "status": "success"
+    },
+    {
+      "time": "01:19:21",
+      "filename": "RetailCast_Overall_Project_Plan_Python_JSX_CSS.pdf",
+      "rule": "PDF",
+      "action": "move",
+      "status": "success"
+    },
+    {
+      "time": "01:19:21",
+      "filename": "RetailCast-Machine-Learning-Based-Retail-Demand-Forecasting-and-Rule-Based-Inventory-Reorder-Decision-Support-System.pdf",
+      "rule": "PDF",
+      "action": "move",
+      "status": "success"
+    },
+    {
+      "time": "01:19:21",
+      "filename": "RetailCast Machine Learning-Based Retail Demand Forecasting and Rule-Based Inventory Reorder Decision Support System.pdf",
+      "rule": "PDF",
+      "action": "move",
+      "status": "success"
+    },
+    {
+      "time": "01:19:21",
+      "filename": "RETAIL ML - UI.html",
+      "rule": "UI Code",
+      "action": "move",
+      "status": "success"
+    },
+    {
+      "time": "01:19:21",
+      "filename": "RETAIL ML - UI - enhance.html",
+      "rule": "UI Code",
+      "action": "move",
+      "status": "success"
+    },
+    {
+      "time": "01:19:21",
+      "filename": "Result.png",
+      "rule": "Images",
+      "action": "move",
+      "status": "success"
+    },
+    {
+      "time": "01:19:21",
+      "filename": "README.md",
+      "rule": "default",
+      "action": "preview",
+      "status": "preview"
+    },
+    {
+      "time": "01:19:21",
+      "filename": "QUAIL-PPT-1.pdf",
+      "rule": "PDF",
+      "action": "move",
+      "status": "success"
+    },
+    {
+      "time": "01:19:21",
+      "filename": "python-manager-26.3.msix",
+      "rule": "default",
+      "action": "preview",
+      "status": "preview"
+    },
+    {
+      "time": "01:19:21",
+      "filename": "ppt ni gabo.pptx",
+      "rule": "PPT",
+      "action": "move",
+      "status": "success"
+    },
+    {
+      "time": "01:19:21",
+      "filename": "PondoPeso_Final_Case_Study_Report.docx",
+      "rule": "Word",
+      "action": "move",
+      "status": "success"
+    },
+    {
+      "time": "01:19:21",
+      "filename": "PINAKA-FINAL-PAPER.pdf",
+      "rule": "PDF",
+      "action": "move",
+      "status": "success"
+    },
+    {
+      "time": "01:19:21",
+      "filename": "NUD-SECA-Form-007_Students-Waiver-1-1.docx.pdf",
+      "rule": "PDF",
+      "action": "move",
+      "status": "success"
+    },
+    {
+      "time": "01:19:21",
+      "filename": "Model.png",
+      "rule": "Images",
+      "action": "move",
+      "status": "success"
+    },
+    {
+      "time": "01:19:21",
+      "filename": "model color coded.png",
+      "rule": "Images",
+      "action": "move",
+      "status": "success"
+    },
+    {
+      "time": "01:19:21",
+      "filename": "mhw_iceborne_wiki_completed_combos.html",
+      "rule": "UI Code",
+      "action": "move",
+      "status": "success"
+    },
+    {
+      "time": "01:19:21",
+      "filename": "mhw_iceborne_wiki_compact_controls.html",
+      "rule": "UI Code",
+      "action": "move",
+      "status": "success"
+    },
+    {
+      "time": "01:19:21",
+      "filename": "Lec1-ML.pdf",
+      "rule": "PDF",
+      "action": "move",
+      "status": "success"
+    },
+    {
+      "time": "01:19:21",
+      "filename": "it-specialist-software-development.png",
+      "rule": "Images",
+      "action": "move",
+      "status": "success"
+    },
+    {
+      "time": "01:19:21",
+      "filename": "icon.jpg",
+      "rule": "Images",
+      "action": "move",
+      "status": "success"
+    },
+    {
+      "time": "01:19:21",
+      "filename": "icon.ico",
+      "rule": "Images",
+      "action": "move",
+      "status": "success"
+    },
+    {
+      "time": "01:19:21",
+      "filename": "Flip-Flop.gif",
+      "rule": "Images",
+      "action": "move",
+      "status": "success"
+    },
+    {
+      "time": "01:19:21",
+      "filename": "FinalPaper_removed.pdf",
+      "rule": "PDF",
+      "action": "move",
+      "status": "success"
+    },
+    {
+      "time": "01:19:21",
+      "filename": "FinalPaper.pdf",
+      "rule": "PDF",
+      "action": "move",
+      "status": "success"
+    },
+    {
+      "time": "01:19:21",
+      "filename": "Final-Chapter-1-3.pdf",
+      "rule": "PDF",
+      "action": "move",
+      "status": "success"
+    },
+    {
+      "time": "01:19:21",
+      "filename": "Final-Chapter-1-3.docx",
+      "rule": "Word",
+      "action": "move",
+      "status": "success"
+    },
+    {
+      "time": "01:19:21",
+      "filename": "FileFlow UI.html",
+      "rule": "UI Code",
+      "action": "move",
+      "status": "success"
+    },
+    {
+      "time": "01:19:21",
+      "filename": "fdm_x64_setup.exe",
+      "rule": "Program",
+      "action": "move",
+      "status": "success"
+    },
+    {
+      "time": "01:19:21",
+      "filename": "FabConvert.com_Sizzling-Habbi.png",
+      "rule": "Images",
+      "action": "move",
+      "status": "success"
+    },
+    {
+      "time": "01:19:21",
+      "filename": "f711a027-85cf-4dad-8110-244e51d8474d.png",
+      "rule": "Images",
+      "action": "move",
+      "status": "success"
+    },
+    {
+      "time": "01:19:21",
+      "filename": "enhanced_diagram_v2.png",
+      "rule": "Images",
+      "action": "move",
+      "status": "success"
+    },
+    {
+      "time": "01:19:21",
+      "filename": "DIY-SENSORS-FOR-CAPSTONE.docx",
+      "rule": "Word",
+      "action": "move",
+      "status": "success"
+    },
+    {
+      "time": "01:19:21",
+      "filename": "Diagram4.png",
+      "rule": "Images",
+      "action": "move",
+      "status": "success"
+    },
+    {
+      "time": "01:19:21",
+      "filename": "desktop.ini",
+      "rule": "default",
+      "action": "preview",
+      "status": "preview"
+    },
+    {
+      "time": "01:19:21",
+      "filename": "DeLeon_ACL_Lab5.pkt",
+      "rule": "default",
+      "action": "preview",
+      "status": "preview"
+    },
+    {
+      "time": "01:19:21",
+      "filename": "DE LEON_Lab5_ACL.pdf",
+      "rule": "PDF",
+      "action": "move",
+      "status": "success"
+    },
+    {
+      "time": "01:19:21",
+      "filename": "DE LEON_Lab5_ACL.docx",
+      "rule": "Word",
+      "action": "move",
+      "status": "success"
+    },
+    {
+      "time": "01:19:21",
+      "filename": "cpelaw.pdf",
+      "rule": "PDF",
+      "action": "move",
+      "status": "success"
+    },
+    {
+      "time": "01:19:21",
+      "filename": "Cisco_IOS_Command_Table.pdf",
+      "rule": "PDF",
+      "action": "move",
+      "status": "success"
+    },
+    {
+      "time": "01:19:21",
+      "filename": "Cisco-Packet-Tracer-Activity.pkt",
+      "rule": "default",
+      "action": "preview",
+      "status": "preview"
+    },
+    {
+      "time": "01:19:21",
+      "filename": "circuit_image.png",
+      "rule": "Images",
+      "action": "move",
+      "status": "success"
+    },
+    {
+      "time": "01:19:21",
+      "filename": "CircDiagram-Single.png",
+      "rule": "Images",
+      "action": "move",
+      "status": "success"
+    },
+    {
+      "time": "01:19:21",
+      "filename": "CircDiagram-PerBlock.png",
+      "rule": "Images",
+      "action": "move",
+      "status": "success"
+    },
+    {
+      "time": "01:19:21",
+      "filename": "cinejoy id.txt",
+      "rule": "Text",
+      "action": "move",
+      "status": "success"
+    },
+    {
+      "time": "01:19:21",
+      "filename": "CentOS-Stream-10-latest-x86_64-dvd1.iso",
+      "rule": "default",
+      "action": "preview",
+      "status": "preview"
+    },
+    {
+      "time": "01:19:21",
+      "filename": "Capstone Project Proposal Presentation.pdf",
+      "rule": "PDF",
+      "action": "move",
+      "status": "success"
+    },
+    {
+      "time": "01:19:21",
+      "filename": "capstone paper format.docx",
+      "rule": "Word",
+      "action": "move",
+      "status": "success"
+    },
+    {
+      "time": "01:19:21",
+      "filename": "Brief_Setup.pdf",
+      "rule": "PDF",
+      "action": "move",
+      "status": "success"
+    },
+    {
+      "time": "01:19:21",
+      "filename": "Basic_Ethical_Frameworks_and_Cultural_Issues_in_Computing.pptx",
+      "rule": "PPT",
+      "action": "move",
+      "status": "success"
+    },
+    {
+      "time": "01:19:21",
+      "filename": "AlgaeBlue_PH_Defense_Reviewer.pdf",
+      "rule": "PDF",
+      "action": "move",
+      "status": "success"
+    },
+    {
+      "time": "01:19:21",
+      "filename": "AlgaeBlue_PH_Chapter3_Reviewer.pdf",
+      "rule": "PDF",
+      "action": "move",
+      "status": "success"
+    },
+    {
+      "time": "01:19:21",
+      "filename": "AlgaeBlue_PH_Capstone_Defense_Answer_Key_with_RRL_Sources.pdf",
+      "rule": "PDF",
+      "action": "move",
+      "status": "success"
+    },
+    {
+      "time": "01:19:21",
+      "filename": "ALGAEBLUEPH.svg",
+      "rule": "Images",
+      "action": "move",
+      "status": "success"
+    },
+    {
+      "time": "01:19:21",
+      "filename": "AlgaeBluePH-WebInterface.html",
+      "rule": "UI Code",
+      "action": "move",
+      "status": "success"
+    },
+    {
+      "time": "01:19:21",
+      "filename": "AlgaeBluePH-Main-Updated.pdf",
+      "rule": "PDF",
+      "action": "move",
+      "status": "success"
+    },
+    {
+      "time": "01:19:21",
+      "filename": "AlgaeBluePH-Main-Updated.docx",
+      "rule": "Word",
+      "action": "move",
+      "status": "success"
+    },
+    {
+      "time": "01:19:21",
+      "filename": "AlgaeBluePH-Main-Updated (2).pdf",
+      "rule": "PDF",
+      "action": "move",
+      "status": "success"
+    },
+    {
+      "time": "01:19:21",
+      "filename": "AlgaeBluePH-Main-Updated (1).pdf",
+      "rule": "PDF",
+      "action": "move",
+      "status": "success"
+    },
+    {
+      "time": "01:19:21",
+      "filename": "AlgaeBluePH-Main-Format.pdf",
+      "rule": "PDF",
+      "action": "move",
+      "status": "success"
+    },
+    {
+      "time": "01:19:21",
+      "filename": "AlgaeBluePH-Main-Format.docx",
+      "rule": "Word",
+      "action": "move",
+      "status": "success"
+    },
+    {
+      "time": "01:19:21",
+      "filename": "AlgaeBluePH-Main-Format-1.pdf",
+      "rule": "PDF",
+      "action": "move",
+      "status": "success"
+    },
+    {
+      "time": "01:19:21",
+      "filename": "AlgaeBluePH-Main-Format-1.docx",
+      "rule": "Word",
+      "action": "move",
+      "status": "success"
+    },
+    {
+      "time": "01:19:21",
+      "filename": "AlgaeBluePH-Main Format.pdf",
+      "rule": "PDF",
+      "action": "move",
+      "status": "success"
+    },
+    {
+      "time": "01:19:21",
+      "filename": "AlgaeBluePH-Final Paper.pdf",
+      "rule": "PDF",
+      "action": "move",
+      "status": "success"
+    },
+    {
+      "time": "01:19:21",
+      "filename": "AlgaeBlue PH Fluorescence-Based HAB Early Warning and Automated Aeration using ML for Fish Pond Management.pdf",
+      "rule": "PDF",
+      "action": "move",
+      "status": "success"
+    },
+    {
+      "time": "01:19:21",
+      "filename": "616.92-notebook-win10-win11-64bit-international-dch-whql.exe",
+      "rule": "Program",
+      "action": "move",
+      "status": "success"
+    },
+    {
+      "time": "01:19:21",
+      "filename": "412+proofread+by+authors.pdf",
+      "rule": "PDF",
+      "action": "move",
+      "status": "success"
+    },
+    {
+      "time": "01:19:21",
+      "filename": "1SWlhRnrnIaJDiUwbssLQZQ.jpg",
+      "rule": "Images",
+      "action": "move",
+      "status": "success"
+    },
+    {
+      "time": "01:19:21",
+      "filename": "1787722701-NU-Dasma Student Handbook A.Y 25-26.pdf",
+      "rule": "PDF",
+      "action": "move",
+      "status": "success"
+    },
+    {
+      "time": "01:19:21",
+      "filename": "1750446701428.jpg",
+      "rule": "Images",
+      "action": "move",
+      "status": "success"
+    },
+    {
+      "time": "01:19:21",
+      "filename": "123.png",
+      "rule": "Images",
+      "action": "move",
+      "status": "success"
+    }
+  ],
+  "_next_folder_id": 2,
+  "_next_rule_id": 17
+}
